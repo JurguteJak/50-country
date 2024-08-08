@@ -1,0 +1,36 @@
+const enter = document.querySelector(".enter");
+const btn = document.querySelector(".btn");
+const searchInput = document.getElementById("search");
+const list = document.querySelector("#list");
+
+btn.addEventListener('click', () => {
+    const value = enter.value;
+
+    if (value.trim() === '') {
+        alert('Enter country');
+        return;
+    }
+    else {
+        list.append(Object.assign(document.createElement('li'), { textContent: value }))
+    }
+
+})
+
+searchInput.addEventListener("keyup", search)
+
+function search() {
+    const searchInputValue = searchInput.value;
+    console.log(searchInputValue);
+
+
+    const listElements = document.getElementsByTagName('li');
+
+    for (let i = 0; i < listElements.length; i++) {
+        if (listElements[i].innerHTML.toLowerCase().includes(searchInputValue) ||
+            listElements[i].innerHTML.toUpperCase().includes(searchInputValue)) {
+            listElements[i].style.display = "";
+        } else {
+            listElements[i].style.display = "none";
+        }
+    }
+}
